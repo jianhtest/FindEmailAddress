@@ -252,25 +252,21 @@ public class FindEmailAddress {
 
             }
 
-            if(path == null)
-            {
-                path = "/";
+            int dotIndex = path.lastIndexOf('.');
+            if (dotIndex >= 0) {
+                String fileExt = path.substring(dotIndex + 1);
+                if (fileExt.equalsIgnoreCase("html") || fileExt.equalsIgnoreCase("htm")) {
+                        isSameDomainUrl = true;
+                }
+
+            } else { // this mean this is a folder using default html page
+                   isSameDomainUrl = true;
             }
 
-            if(path == null) //this a folder with same domain
-            {
-                isSameDomainUrl = true;
-            }else{
-                int dotIndex = path.lastIndexOf('.');
-                if (dotIndex >= 0) {
-                    String fileExt = path.substring(dotIndex + 1);
-                    if (fileExt.equalsIgnoreCase("html") || fileExt.equalsIgnoreCase("htm")) {
-                            isSameDomainUrl = true;
-                    }
 
-                } else { // this mean this is a folder using default html page
-                       isSameDomainUrl = true;
-                }
+            if(testString.endsWith("/"))
+            {
+                testString = testString.substring(0,testString.length()-1);
             }
 
             if(isSameDomainUrl)
