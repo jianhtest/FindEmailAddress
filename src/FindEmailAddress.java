@@ -92,7 +92,7 @@ public class FindEmailAddress {
     * the email address will be saved in a hashtable
     * the urls will be saved in a vector, and a history tashtable is for filtering the urls already visited.
     */
-    public String makeHttpReuqest(String httpURLString)
+    private String makeHttpReuqest(String httpURLString)
     {
         String responseString = null;
         BufferedReader reader = null;
@@ -143,7 +143,7 @@ public class FindEmailAddress {
     *  Search Email and Href
     *  if it is email we do not need to check it is same domain url anymore.
      */
-    public void searchEmailAndHRef(String responseStr)
+    private void searchEmailAndHRef(String responseStr)
     {
         //System.out.println("The searchEmailAndHRef string is :" + responseStr);
         String lowerString = responseStr.toLowerCase();
@@ -165,7 +165,7 @@ public class FindEmailAddress {
     /*
      * check if this is validate email address
      */
-    public boolean checkIfEmail(String inputString)
+    private boolean checkIfEmail(String inputString)
     {
         //System.out.println("The checkIFEmail string is :" + inputString);
         String testString = inputString.trim();
@@ -201,7 +201,7 @@ public class FindEmailAddress {
     /*
     *  check if this is a valid url we need to scrawl
     */
-    public boolean checkIfSameDomainHtmlLink(String inputString)
+    private boolean checkIfSameDomainHtmlLink(String inputString)
     {
         //System.out.println("The checkIfSameDomainHtmlLink string is :" + inputString);
         boolean isSameDomainUrl = false;
