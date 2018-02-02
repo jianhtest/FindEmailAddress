@@ -31,7 +31,7 @@ public class FindEmailAddress {
     public Hashtable<String,String> emails;
     public static int maxUrlCheck = 200; //to avoid too many pages to check we add maximum number of url to check, it can be modified
     public ExecutorService executor;
-    public int tasksNumber;
+    public Integer tasksNumber;
 
     public static void main(String[] args)
     {
@@ -54,7 +54,6 @@ public class FindEmailAddress {
     */
     public FindEmailAddress(String requestURL)
     {
-
         this.rootURL = requestURL;
         if(!requestURL.toLowerCase().startsWith("http"))
         {
@@ -82,11 +81,14 @@ public class FindEmailAddress {
 
     public void startWebCrawl()
     {
+        if(rootURL == null || rootURL.trim().length()<=0)
+            return;
+
         executor = Executors.newFixedThreadPool(10);
         executor.execute(new Handler(rootURL));
         do{
             try {
-                Thread.sleep(5000);
+                Thread.sleep(3000);
             }catch(Exception e)
             {
                 e.printStackTrace();
@@ -119,6 +121,8 @@ public class FindEmailAddress {
     */
     private void makeHttpReuqest(String httpURLString)
     {
+        if(httpURLString == null || httpURLString.trim().length()<=0)
+            return;
         BufferedReader reader = null;
         try {
             URL urlObj = new URL(httpURLString);
@@ -136,7 +140,7 @@ public class FindEmailAddress {
 
         }catch(Exception ex)
         {
-            System.out.println("Cannnot reach url:" + httpURLString);
+            System.out.println("Cannot reach url:" + httpURLString);
         }finally{
             if(reader != null)
             {
@@ -146,8 +150,10 @@ public class FindEmailAddress {
                 {
                     e.printStackTrace();
                 }
+                synchronized (tasksNumber) {
+                    tasksNumber --;
+                }
             }
-            this.tasksNumber --;
         }
 
         return;
@@ -161,7 +167,8 @@ public class FindEmailAddress {
      */
     private void searchEmailAndHRef(String responseStr)
     {
-        //System.out.println("The searchEmailAndHRef string is :" + responseStr);
+        if(responseStr == null || responseStr.trim().length()<=0)
+            return;
         String lowerString = responseStr.toLowerCase();
         int startIndex = lowerString.indexOf("href=\"");
         while(startIndex >=0)
@@ -183,9 +190,12 @@ public class FindEmailAddress {
      */
     private boolean checkIfEmail(String inputString)
     {
-        //System.out.println("The checkIFEmail string is :" + inputString);
-        String testString = inputString.trim();
         boolean isEmail = false;
+        if(inputString == null || inputString.trim().length()<=0)
+            return isEmail;
+
+        String testString = inputString.trim();
+
         if(testString.startsWith("mailto:"))
         {
             String emailAddress = testString.substring(7);
@@ -245,8 +255,10 @@ public class FindEmailAddress {
     */
     private boolean checkIfSameDomainHtmlLink(String inputString)
     {
-        //System.out.println("The checkIfSameDomainHtmlLink string is :" + inputString);
         boolean isSameDomainUrl = false;
+        if(inputString == null || inputString.trim().length()<=0)
+            return isSameDomainUrl;
+
         String testString = inputString.trim();
 
         if(!testString.toLowerCase().startsWith("http"))
@@ -309,12 +321,16 @@ public class FindEmailAddress {
             //if this is a sameDomainURL, first check if it is already visited then add a new task to the thread pool
             if(isSameDomainUrl)
             {
-                if(this.urlHistory.get(testString)==null && urlHistory.size()<maxUrlCheck)  {
+                //synchronized (urlHistory) {
+                    if (this.urlHistory.get(testString) == null && urlHistory.size() < maxUrlCheck) {
 
                         this.urlHistory.put(testString, "");
+                        synchronized (tasksNumber) {
+                            this.tasksNumber++;
+                        }
                         this.executor.execute(new Handler(testString));
-                        this.tasksNumber ++;
-                }
+                    }
+                //}
 
             }
 
