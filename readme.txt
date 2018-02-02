@@ -1,4 +1,4 @@
-This a java application to email addresses based on the domain of input URL. All the urls
+This a java application to find email addresses in webpages. Based on the domain of input URL, all the urls
 with the same domain if (direct or indirect) linked with the the first page, will be searched
 for the email address.
 
@@ -21,7 +21,6 @@ To make a build:
 	 
 
 The application will print out the urls it visited.
-And it will print out the email address it found.
+And it will print out the email address it found at the end
  
-This is a application need to be improved by multi-thread. Due to the time limit we did not
-Implement that way.
+
