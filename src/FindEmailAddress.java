@@ -27,7 +27,7 @@ public class FindEmailAddress {
     public Vector<String> urls;
     public Hashtable<String,String> urlHistory;
     public Hashtable<String,String> emails;
-    public static int maxUrlCheck = 100; //to avoid too many page to check we add maximum number of url to check, it can be modified
+    public static int maxUrlCheck = 100; //to avoid too many pages to check we add maximum number of url to check, it can be modified
 
     public static void main(String[] args)
     {
@@ -321,33 +321,4 @@ public class FindEmailAddress {
 //        }
     }
 
-
-    public class WorkerThread implements Runnable {
-
-        private String command;
-
-        public WorkerThread(String s){
-            this.command=s;
-        }
-
-        @Override
-        public void run() {
-            System.out.println(Thread.currentThread().getName()+" Start. Command = "+command);
-            processCommand();
-            System.out.println(Thread.currentThread().getName()+" End.");
-        }
-
-        private void processCommand() {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        public String toString(){
-            return this.command;
-        }
-    }
 }
