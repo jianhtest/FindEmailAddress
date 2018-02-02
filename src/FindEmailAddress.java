@@ -92,11 +92,9 @@ public class FindEmailAddress {
     * the email address will be saved in a hashtable
     * the urls will be saved in a vector, and a history tashtable is for filtering the urls already visited.
     */
-    private String makeHttpReuqest(String httpURLString)
+    private void makeHttpReuqest(String httpURLString)
     {
-        String responseString = null;
         BufferedReader reader = null;
-        StringBuffer response = null;
         try {
             URL urlObj = new URL(httpURLString);
             HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
@@ -107,11 +105,9 @@ public class FindEmailAddress {
                 reader = new BufferedReader(
                         new InputStreamReader(con.getInputStream()));
                 String inputLine;
-                response = new StringBuffer();
 
                 while ((inputLine = reader.readLine()) != null) {
                     searchEmailAndHRef(inputLine);
-                    response.append(inputLine);
                 }
             }
         }catch(Exception ex)
@@ -129,12 +125,7 @@ public class FindEmailAddress {
             }
         }
 
-        if(response != null)
-        {
-            responseString = response.toString();
-        }
-
-        return responseString;
+        return;
 
     }
 
@@ -199,6 +190,32 @@ public class FindEmailAddress {
 
 
     /*
+    * sometime the url will be looks like http:////....
+    * or //.....
+    * we need normalize them, otherwise URL will not be able to recognize them.
+     */
+    private String removeExtraSlash(String inputString)
+    {
+        if(inputString == null)
+            return null;
+
+        int point = 0;
+        int length = inputString.length();
+        while(point < length && inputString.charAt(point) == '/' )
+        {
+            point ++;
+        }
+        if(point<length)
+        {
+            return inputString.substring(point);
+        }else{
+            return "";
+        }
+
+    }
+
+
+    /*
     *  check if this is a valid url we need to scrawl
     */
     private boolean checkIfSameDomainHtmlLink(String inputString)
@@ -212,10 +229,7 @@ public class FindEmailAddress {
             if(!testString.startsWith("/"))
                 return isSameDomainUrl;
 
-            while(testString.startsWith("/"))
-            {
-                testString = testString.substring(1);
-            }
+            testString = removeExtraSlash(testString);
             testString = "http://" + testString;
         }else{
             int parthStartIndex = testString.indexOf("//");
@@ -226,12 +240,10 @@ public class FindEmailAddress {
 
             String protocolHeader = testString.substring(0,parthStartIndex+2);
             testString = testString.substring(parthStartIndex+2);
-            while(testString.startsWith("/"))
-            {
-                testString = testString.substring(1);
+            if(testString.startsWith("/")) {
+                testString = removeExtraSlash(testString);
             }
             testString = protocolHeader + testString;
-
         }
 
         try {
