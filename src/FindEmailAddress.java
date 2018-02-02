@@ -79,6 +79,7 @@ public class FindEmailAddress {
         {
             String requestURL = this.urls.elementAt(0);
             this.urls.remove(0);
+            System.out.println("start url :" + requestURL);
             makeHttpReuqest(requestURL);
         }
     }
