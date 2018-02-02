@@ -6,6 +6,8 @@
 * print out a list of the email addresses that were found on that website only.
 * the application will find email addresses on any discoverable page of the website.
 *
+* We implemented a multithread method. each url request and email&href check is a threadTask
+*
 *
 */
 
@@ -14,8 +16,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Hashtable;
-import java.util.Vector;
 import java.net.URI;
+import java.util.concurrent.*;
 
 /*
 *  This is the main class to get the email addresses
@@ -23,11 +25,13 @@ import java.net.URI;
 */
 public class FindEmailAddress {
 
+    private String rootURL;
     public String requestDomain;
-    public Vector<String> urls;
     public Hashtable<String,String> urlHistory;
     public Hashtable<String,String> emails;
-    public static int maxUrlCheck = 100; //to avoid too many pages to check we add maximum number of url to check, it can be modified
+    public static int maxUrlCheck = 200; //to avoid too many pages to check we add maximum number of url to check, it can be modified
+    public ExecutorService executor;
+    public int tasksNumber;
 
     public static void main(String[] args)
     {
@@ -51,13 +55,13 @@ public class FindEmailAddress {
     public FindEmailAddress(String requestURL)
     {
 
-        String thisRequestURL = requestURL;
+        this.rootURL = requestURL;
         if(!requestURL.toLowerCase().startsWith("http"))
         {
-            thisRequestURL = "http://" + requestURL;
+            rootURL = "http://" + requestURL;
         }
         try {
-            URI uri = new URI(thisRequestURL);
+            URI uri = new URI(rootURL);
             this.requestDomain= uri.getHost();
 
         }catch(java.net.URISyntaxException e)
@@ -65,26 +69,46 @@ public class FindEmailAddress {
             e.printStackTrace();
         }
         this.emails = new Hashtable<String,String>();
-        this.urls   = new Vector<String>();
         this.urlHistory = new Hashtable<String, String>();
-        this.urls.add(thisRequestURL);
-        this.urlHistory.put(thisRequestURL,"");
+        this.urlHistory.put(rootURL,"");
+        tasksNumber = 0;
     }
 
     /*
      *  This is the function to do web crawling
+     *  it will create a thread pool
+     *  if all the tasks are done, it will stop.
      */
+
     public void startWebCrawl()
     {
-        while(this.urls.size()>0)
-        {
-            String requestURL = this.urls.elementAt(0);
-            this.urls.remove(0);
-            System.out.println("start url :" + requestURL);
+        executor = Executors.newFixedThreadPool(10);
+        executor.execute(new Handler(rootURL));
+        do{
+            try {
+                Thread.sleep(5000);
+            }catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }while(this.tasksNumber >0);
+
+        executor.shutdown();
+    }
+
+/*
+* this inline class is for http request and email check running task
+*/
+    class Handler implements Runnable {
+        String requestURL;
+        Handler(String requestURL) {
+            this.requestURL = requestURL;
+        }
+        public void run() {
+            System.out.println("start search url :" + requestURL);
             makeHttpReuqest(requestURL);
         }
     }
-
 
     //need multithread
     /*
@@ -123,6 +147,7 @@ public class FindEmailAddress {
                     e.printStackTrace();
                 }
             }
+            this.tasksNumber --;
         }
 
         return;
@@ -281,12 +306,14 @@ public class FindEmailAddress {
                 testString = testString.substring(0,testString.length()-1);
             }
 
+            //if this is a sameDomainURL, first check if it is already visited then add a new task to the thread pool
             if(isSameDomainUrl)
             {
                 if(this.urlHistory.get(testString)==null && urlHistory.size()<maxUrlCheck)  {
 
                         this.urlHistory.put(testString, "");
-                        this.urls.add(testString);
+                        this.executor.execute(new Handler(testString));
+                        this.tasksNumber ++;
                 }
 
             }
@@ -307,18 +334,13 @@ public class FindEmailAddress {
      */
     public void printout()
     {
+        System.out.println();
+        System.out.println();
         System.out.println("The results are: ");
         java.util.Set<String> keys = this.emails.keySet();
         for(String key: keys){
             System.out.println(key);
         }
-
-
-//        System.out.println("urls accessed are: ");
-//        keys = this.urlHistory.keySet();
-//        for(String key: keys){
-//            System.out.println(key);
-//        }
     }
 
 }
