@@ -20,9 +20,8 @@ To make a build:
 	 type javac FindEmailAddress.java
 	 
 
-The application will print out the urls it cannot reach.
-To see the urls the application visited, please go to the function printout() and uncomment
-the last five line code
+The application will print out the urls it visited.
+And it will print out the email address it found.
  
 This is a application need to be improved by multi-thread. Due to the time limit we did not
 Implement that way.
