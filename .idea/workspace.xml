@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a34cdf0-cc9f-436e-819f-e79b5e598a2d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/out/production/FindEmailAddress/FindEmailAddress.class" afterPath="$PROJECT_DIR$/out/production/FindEmailAddress/FindEmailAddress.class" />
       <change beforePath="$PROJECT_DIR$/src/FindEmailAddress.java" afterPath="$PROJECT_DIR$/src/FindEmailAddress.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -20,11 +22,15 @@
       <file leaf-file-name="FindEmailAddress.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FindEmailAddress.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-710">
-              <caret line="244" column="13" lean-forward="false" selection-start-line="244" selection-start-column="13" selection-end-line="244" selection-end-column="13" />
+            <state relative-caret-position="448">
+              <caret line="353" column="0" lean-forward="true" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
               <folding>
-                <element signature="e#0#9525#0" expanded="true" />
+                <element signature="e#0#10290#0" expanded="true" />
                 <element signature="imports" expanded="true" />
+                <element signature="e#9687#9688#0" expanded="true" />
+                <element signature="e#9725#9726#0" expanded="true" />
+                <element signature="e#10237#10238#0" expanded="true" />
+                <element signature="e#10280#10281#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -49,6 +55,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>checkIfSameDomainHtmlLink</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -65,8 +76,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1733" />
-    <option name="y" value="-628" />
+    <option name="x" value="1830" />
+    <option name="y" value="-642" />
     <option name="width" value="1665" />
     <option name="height" value="978" />
   </component>
@@ -86,6 +97,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -102,10 +116,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="RunDashboard">
@@ -132,7 +143,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="FindEmailAddress" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="web.mit.edu" />
+      <option name="PROGRAM_PARAMETERS" value="http://www.boston.com" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -239,7 +250,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1733" y="-628" width="1665" height="978" extended-state="0" />
+    <frame x="1830" y="-642" width="1665" height="978" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -279,15 +290,9 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
-          <line>41</line>
+          <line>42</line>
           <properties />
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
-          <line>53</line>
-          <properties />
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
@@ -309,35 +314,68 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
-          <line>138</line>
-          <properties />
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
           <line>223</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
-          <line>34</line>
+          <line>139</line>
           <properties />
-          <option name="timeStamp" value="19" />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
+          <line>78</line>
+          <properties />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
+          <line>97</line>
+          <properties />
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="20" />
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/FindEmailAddress.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3300">
+          <caret line="220" column="45" lean-forward="false" selection-start-line="220" selection-start-column="20" selection-end-line="220" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#10290#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#9687#9688#0" expanded="true" />
+            <element signature="e#9725#9726#0" expanded="true" />
+            <element signature="e#10237#10238#0" expanded="true" />
+            <element signature="e#10280#10281#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44985">
+          <caret line="3115" column="0" lean-forward="false" selection-start-line="3115" selection-start-column="0" selection-end-line="3115" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FindEmailAddress.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
           <folding>
-            <element signature="e#0#9525#0" expanded="true" />
+            <element signature="e#0#10290#0" expanded="true" />
             <element signature="imports" expanded="true" />
+            <element signature="e#9687#9688#0" expanded="true" />
+            <element signature="e#9725#9726#0" expanded="true" />
+            <element signature="e#10237#10238#0" expanded="true" />
+            <element signature="e#10280#10281#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -360,11 +398,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FindEmailAddress.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-710">
-          <caret line="244" column="13" lean-forward="false" selection-start-line="244" selection-start-column="13" selection-end-line="244" selection-end-column="13" />
+        <state relative-caret-position="448">
+          <caret line="353" column="0" lean-forward="true" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9525#0" expanded="true" />
+            <element signature="e#0#10290#0" expanded="true" />
             <element signature="imports" expanded="true" />
+            <element signature="e#9687#9688#0" expanded="true" />
+            <element signature="e#9725#9726#0" expanded="true" />
+            <element signature="e#10237#10238#0" expanded="true" />
+            <element signature="e#10280#10281#0" expanded="true" />
           </folding>
         </state>
       </provider>

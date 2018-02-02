@@ -27,6 +27,7 @@ public class FindEmailAddress {
     public Vector<String> urls;
     public Hashtable<String,String> urlHistory;
     public Hashtable<String,String> emails;
+    public static int maxUrlCheck = 100; //to avoid too many page to check we add maximum number of url to check, it can be modified
 
     public static void main(String[] args)
     {
@@ -100,16 +101,15 @@ public class FindEmailAddress {
             HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", "Mozilla/5.0"); //some website if did not see the user agent will take it robot and cause http call failing
-            int responseCode = con.getResponseCode();
-            if(responseCode == 200) {
-                reader = new BufferedReader(
-                        new InputStreamReader(con.getInputStream()));
-                String inputLine;
 
-                while ((inputLine = reader.readLine()) != null) {
-                    searchEmailAndHRef(inputLine);
-                }
+            reader = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+
+            while ((inputLine = reader.readLine()) != null) {
+                searchEmailAndHRef(inputLine);
             }
+
         }catch(Exception ex)
         {
             System.out.println("Cannnot reach url:" + httpURLString);
@@ -283,7 +283,8 @@ public class FindEmailAddress {
 
             if(isSameDomainUrl)
             {
-                if(this.urlHistory.get(testString)==null) {
+                if(this.urlHistory.get(testString)==null && urlHistory.size()<maxUrlCheck)  {
+
                         this.urlHistory.put(testString, "");
                         this.urls.add(testString);
                 }
@@ -320,4 +321,33 @@ public class FindEmailAddress {
 //        }
     }
 
+
+    public class WorkerThread implements Runnable {
+
+        private String command;
+
+        public WorkerThread(String s){
+            this.command=s;
+        }
+
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName()+" Start. Command = "+command);
+            processCommand();
+            System.out.println(Thread.currentThread().getName()+" End.");
+        }
+
+        private void processCommand() {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public String toString(){
+            return this.command;
+        }
+    }
 }
