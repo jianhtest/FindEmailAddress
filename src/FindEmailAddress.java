@@ -15,7 +15,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Hashtable;
+import java.util.Set;
+import java.util.HashSet;
 import java.net.URI;
 import java.util.concurrent.*;
 
@@ -26,12 +27,12 @@ import java.util.concurrent.*;
 public class FindEmailAddress {
 
     private String rootURL;
-    public String requestDomain;
-    public Hashtable<String,String> urlHistory;
-    public Hashtable<String,String> emails;
-    public static int maxUrlCheck = 200; //to avoid too many pages to check we add maximum number of url to check, it can be modified
-    public ExecutorService executor;
-    public Integer tasksNumber;
+    private String requestDomain;
+    private Set<String> urlHistory;
+    private Set<String> emails;
+    private static int maxUrlCheck = 200; //to avoid too many pages to check we add maximum number of url to check, it can be modified
+    private ExecutorService executor;
+    private Integer tasksNumber;
 
     public static void main(String[] args)
     {
@@ -41,10 +42,18 @@ public class FindEmailAddress {
         {
             requestUrl =  args[0];
         }
-        if (requestUrl == null)
+        if (requestUrl == null) {
+            System.out.println("please input proper URL and try again (example: java FindEmailAddress web.mit.edu");
             return;
-
-        FindEmailAddress findEmailAddress = new FindEmailAddress(requestUrl);
+        }
+        FindEmailAddress findEmailAddress;
+        try {
+            findEmailAddress = new FindEmailAddress(requestUrl);
+        }catch (java.net.URISyntaxException e)
+        {
+            System.out.println("Bad URL, could not get any result!");
+            return;
+        }
         findEmailAddress.startWebCrawl();
         findEmailAddress.printout();
     }
@@ -52,24 +61,20 @@ public class FindEmailAddress {
     /*
     *  @param requestURL is the root url. All the webpage with same domain will be searched for email address
     */
-    public FindEmailAddress(String requestURL)
+    public FindEmailAddress(String requestURL) throws java.net.URISyntaxException
     {
         this.rootURL = requestURL;
         if(!requestURL.toLowerCase().startsWith("http"))
         {
             rootURL = "http://" + requestURL;
         }
-        try {
-            URI uri = new URI(rootURL);
-            this.requestDomain= uri.getHost();
 
-        }catch(java.net.URISyntaxException e)
-        {
-            e.printStackTrace();
-        }
-        this.emails = new Hashtable<String,String>();
-        this.urlHistory = new Hashtable<String, String>();
-        this.urlHistory.put(rootURL,"");
+        URI uri = new URI(rootURL);
+        this.requestDomain= uri.getHost();
+
+        this.emails = new HashSet<String>();
+        this.urlHistory = new HashSet<String>();
+        this.urlHistory.add(rootURL);
         tasksNumber = 0;
     }
 
@@ -86,6 +91,7 @@ public class FindEmailAddress {
 
         executor = Executors.newFixedThreadPool(10);
         executor.execute(new Handler(rootURL));
+        tasksNumber ++;
         do{
             try {
                 Thread.sleep(3000);
@@ -108,7 +114,7 @@ public class FindEmailAddress {
         }
         public void run() {
             System.out.println("start search url :" + requestURL);
-            makeHttpReuqest(requestURL);
+            makeHttpRequest(requestURL);
         }
     }
 
@@ -119,10 +125,14 @@ public class FindEmailAddress {
     * the email address will be saved in a hashtable
     * the urls will be saved in a vector, and a history tashtable is for filtering the urls already visited.
     */
-    private void makeHttpReuqest(String httpURLString)
+    private void makeHttpRequest(String httpURLString)
     {
-        if(httpURLString == null || httpURLString.trim().length()<=0)
+        if(httpURLString == null || httpURLString.trim().length()<=0) {
+            synchronized (tasksNumber) {
+                tasksNumber --;
+            }
             return;
+        }
         BufferedReader reader = null;
         try {
             URL urlObj = new URL(httpURLString);
@@ -150,9 +160,9 @@ public class FindEmailAddress {
                 {
                     e.printStackTrace();
                 }
-                synchronized (tasksNumber) {
-                    tasksNumber --;
-                }
+            }
+            synchronized (tasksNumber) {
+                tasksNumber --;
             }
         }
 
@@ -216,7 +226,7 @@ public class FindEmailAddress {
                         emailAddress = emailAddress.substring(0,endIndex);
                     }
                 }
-                emails.put(emailAddress,"");
+                emails.add(emailAddress);
                 isEmail = true;
             }
         }
@@ -322,9 +332,9 @@ public class FindEmailAddress {
             if(isSameDomainUrl)
             {
                 //synchronized (urlHistory) {
-                    if (this.urlHistory.get(testString) == null && urlHistory.size() < maxUrlCheck) {
+                    if (!this.urlHistory.contains(testString) && urlHistory.size() < maxUrlCheck) {
 
-                        this.urlHistory.put(testString, "");
+                        this.urlHistory.add(testString);
                         synchronized (tasksNumber) {
                             this.tasksNumber++;
                         }
@@ -353,8 +363,8 @@ public class FindEmailAddress {
         System.out.println();
         System.out.println();
         System.out.println("The results are: ");
-        java.util.Set<String> keys = this.emails.keySet();
-        for(String key: keys){
+
+        for(String key: emails){
             System.out.println(key);
         }
     }
