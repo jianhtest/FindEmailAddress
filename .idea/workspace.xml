@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a34cdf0-cc9f-436e-819f-e79b5e598a2d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/FindEmailAddress.java" afterPath="$PROJECT_DIR$/src/FindEmailAddress.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,13 +20,13 @@
       <file leaf-file-name="FindEmailAddress.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FindEmailAddress.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="51" column="46" lean-forward="true" selection-start-line="51" selection-start-column="46" selection-end-line="51" selection-end-column="46" />
+            <state relative-caret-position="449">
+              <caret line="32" column="41" lean-forward="false" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
               <folding>
-                <element signature="e#0#10995#0" expanded="true" />
+                <element signature="e#0#11923#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#3213#3214#0" expanded="true" />
-                <element signature="e#3265#3266#0" expanded="true" />
+                <element signature="e#3967#3968#0" expanded="true" />
+                <element signature="e#4019#4020#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -298,42 +297,42 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
-          <line>48</line>
+          <line>52</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
-          <line>210</line>
+          <line>246</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
-          <line>297</line>
+          <line>333</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
-          <line>315</line>
+          <line>351</line>
           <properties />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
-          <line>270</line>
+          <line>306</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FindEmailAddress.java</url>
-          <line>181</line>
+          <line>217</line>
           <properties />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="23" />
+      <option name="time" value="24" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -343,10 +342,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10995#0" expanded="true" />
+            <element signature="e#0#11923#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3213#3214#0" expanded="true" />
-            <element signature="e#3265#3266#0" expanded="true" />
+            <element signature="e#3967#3968#0" expanded="true" />
+            <element signature="e#4019#4020#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -364,10 +363,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10995#0" expanded="true" />
+            <element signature="e#0#11923#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3213#3214#0" expanded="true" />
-            <element signature="e#3265#3266#0" expanded="true" />
+            <element signature="e#3967#3968#0" expanded="true" />
+            <element signature="e#4019#4020#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -385,10 +384,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10995#0" expanded="true" />
+            <element signature="e#0#11923#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3213#3214#0" expanded="true" />
-            <element signature="e#3265#3266#0" expanded="true" />
+            <element signature="e#3967#3968#0" expanded="true" />
+            <element signature="e#4019#4020#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -406,10 +405,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10995#0" expanded="true" />
+            <element signature="e#0#11923#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3213#3214#0" expanded="true" />
-            <element signature="e#3265#3266#0" expanded="true" />
+            <element signature="e#3967#3968#0" expanded="true" />
+            <element signature="e#4019#4020#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -427,10 +426,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10995#0" expanded="true" />
+            <element signature="e#0#11923#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3213#3214#0" expanded="true" />
-            <element signature="e#3265#3266#0" expanded="true" />
+            <element signature="e#3967#3968#0" expanded="true" />
+            <element signature="e#4019#4020#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -448,10 +447,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10995#0" expanded="true" />
+            <element signature="e#0#11923#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3213#3214#0" expanded="true" />
-            <element signature="e#3265#3266#0" expanded="true" />
+            <element signature="e#3967#3968#0" expanded="true" />
+            <element signature="e#4019#4020#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -469,10 +468,10 @@
         <state relative-caret-position="3300">
           <caret line="220" column="45" lean-forward="false" selection-start-line="220" selection-start-column="20" selection-end-line="220" selection-end-column="45" />
           <folding>
-            <element signature="e#0#10995#0" expanded="true" />
+            <element signature="e#0#11923#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3213#3214#0" expanded="true" />
-            <element signature="e#3265#3266#0" expanded="true" />
+            <element signature="e#3967#3968#0" expanded="true" />
+            <element signature="e#4019#4020#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -490,10 +489,10 @@
         <state relative-caret-position="300">
           <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
           <folding>
-            <element signature="e#0#10995#0" expanded="true" />
+            <element signature="e#0#11923#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3213#3214#0" expanded="true" />
-            <element signature="e#3265#3266#0" expanded="true" />
+            <element signature="e#3967#3968#0" expanded="true" />
+            <element signature="e#4019#4020#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -524,13 +523,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FindEmailAddress.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="51" column="46" lean-forward="true" selection-start-line="51" selection-start-column="46" selection-end-line="51" selection-end-column="46" />
+        <state relative-caret-position="449">
+          <caret line="32" column="41" lean-forward="false" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
           <folding>
-            <element signature="e#0#10995#0" expanded="true" />
+            <element signature="e#0#11923#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3213#3214#0" expanded="true" />
-            <element signature="e#3265#3266#0" expanded="true" />
+            <element signature="e#3967#3968#0" expanded="true" />
+            <element signature="e#4019#4020#0" expanded="true" />
           </folding>
         </state>
       </provider>

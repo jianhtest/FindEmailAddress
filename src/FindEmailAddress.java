@@ -30,9 +30,13 @@ public class FindEmailAddress {
     private String requestDomain;
     private Set<String> urlHistory;
     private Set<String> emails;
-    private static int maxUrlCheck = 200; //to avoid too many pages to check we add maximum number of url to check, it can be modified
+    private static int maxUrlCheck = 2000; //to avoid too many pages to check we add maximum number of url to check, it can be modified
     private ExecutorService executor;
     private Integer tasksNumber;
+
+    private Object lockObj = new Object();
+
+    //private final Semaphore semaphore = new Semaphore(maxUrlCheck, true);
 
     public static void main(String[] args)
     {
@@ -90,21 +94,45 @@ public class FindEmailAddress {
             return;
 
         executor = Executors.newFixedThreadPool(10);
-        executor.execute(new Handler(rootURL));
         tasksNumber ++;
-        do{
+        executor.execute(new Handler(rootURL));
+
+
+        synchronized (lockObj) {
             try {
-                Thread.sleep(3000);
-            }catch(Exception e)
-            {
+                lockObj.wait();
+            } catch (InterruptedException e) {
+                System.out.println("Lock obj thread was interrupted while waiting for the result. Exception:");
                 e.printStackTrace();
             }
-        }while(this.tasksNumber >0);
-
+        }
         executor.shutdown();
     }
 
-/*
+//    public void startWebCrawl()
+//    {
+//        if(rootURL == null || rootURL.trim().length()<=0)
+//            return;
+//
+//
+//        executor = Executors.newFixedThreadPool(10);
+//        tasksNumber ++;
+//        executor.execute(new Handler(rootURL));
+//
+//        do{
+//            try {
+//                Thread.sleep(3000);
+//            }catch(Exception e)
+//            {
+//                e.printStackTrace();
+//            }
+//        }while(this.tasksNumber >0);
+//
+//        executor.shutdown();
+//    }
+
+
+    /*
 * this inline class is for http request and email check running task
 */
     class Handler implements Runnable {
@@ -162,7 +190,15 @@ public class FindEmailAddress {
                 }
             }
             synchronized (tasksNumber) {
-                tasksNumber --;
+                tasksNumber--;
+            }
+
+            if(tasksNumber == 0)
+            {
+                synchronized (lockObj)
+                {
+                    lockObj.notify();
+                }
             }
         }
 
